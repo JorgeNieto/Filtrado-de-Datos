@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Filtrado de datos</title>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
+<script src="../js/fileuploader.js"></script>
+<link rel="stylesheet" href="../css/fileuploader.css">
+
+
+
+<script type="text/javascript">
+function hideAll(){
+  $( ".container" ).hide();
+  $( "#EmailOk" ).hide();
+  $( "#EmailWrong" ).hide();
+}
+function start(){
+  hideAll();
+  $( "#Inicio" ).toggle();
+}
+
+function show_Contacto(){
+    hideAll();
+    $('#Contacto').toggle();
+    $('#email').val("");
+    $('#asunto').val("");
+    $('#mensaje').val("");
+    while (!($('#Enviar').is(":visible"))){
+        $('#Enviar').toggle()
+    }
+
+}
+function show_Inicio(){
+    hideAll();
+    $('#Inicio').toggle();
+}
+function EnviarEmail(){
+    $('#Enviar').hide();
+  $.post("contactar",
+    {
+        email: $('#email').val(),
+        asunto: $('#asunto').val(),
+        mensaje: $('#mensaje').val(),
+    },
+    function(data, status){
+      console.log(data)
+      if (!(status==500)) {
+        $( "#EmailOk" ).toggle();
+      }else{
+        $( "#EmailWrong" ).toggle();
+      }
+    });
+}
+
+window.onload = start;
+</script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" onclick="show_Inicio()">Filtrado Datos</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav" onclick="show_Contacto()">
+            <li><a >Contacto</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div id="Inicio" class="container">
+      <div class="starter-template">
+        <h1>Filtrado de datos</h1>
+        <p class="lead">Utiliza esta aplicación para filtrar, recortar, eliminar errores y control de calidad de tu dataset.</p>
+      </div>
+
+      <div id="file-uploader">
+        <noscript>
+            <p>Please enable JavaScript to use file uploader.</p>
+        </noscript>
+      </div>
+        <script>
+            var uploader = new qq.FileUploader({
+            // pass the dom node (ex. $(selector)[0] for jQuery users)
+            element: document.getElementById('file-uploader'),
+            // path to server-side upload script
+            action: '/upload'
+        });
+        </script>
+
+        <input type="submit" value="Go to my link location" onclick="window.location='/see';" />
+    </div>
+
+    <div id="Contacto" class="container">
+      <div class="starter-template">
+        <h1>Contacto</h1>
+        <p class="lead">Utiliza este formulario para contactar con el desarrollador de la aplicación web. En breve obtendrás una respuesta.</p>
+      </div>
+
+    <form class="form-horizontal" role="form" action="contactar" method="GET">
+      <div class="form-group">
+        <label for="email" class="col-lg-2 control-label">Email de contacto</label>
+        <div class="col-lg-10">
+          <input type="email" class="form-control" id="email"
+                 placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Asunto" class="col-lg-2 control-label">Asunto</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control" id="asunto" 
+                 placeholder="Asunto">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mensaje" class="col-lg-2 control-label">Mensaje</label>
+        <div class="col-lg-10">
+          <textarea class="form-control" id="mensaje" rows="8" style="resize:none" placeholder="Escriba su mensaje aquí"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <button id="Enviar" type="button" class="btn btn-primary btn" onclick="EnviarEmail()">Enviar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div id="EmailWrong" class="alert alert-danger" role="alert">El e-mail no ha podido enviarse, en breve solucionaremos el error.</div>
+  <div id="EmailOk" class="alert alert-success" role="alert">¡El e-mail se ha enviado correctamente!</div>
+</body>
+</html>
