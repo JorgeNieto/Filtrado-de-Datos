@@ -20,6 +20,10 @@ file_name =''
 def css(path):
     return send_from_directory('Recursos/css', path)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory('Recursos', 'favicon.ico')
+    
 @app.route('/js/<path:path>')
 def jss(path):
     return send_from_directory('Recursos/js', path)

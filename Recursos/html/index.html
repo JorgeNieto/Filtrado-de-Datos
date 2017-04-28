@@ -103,20 +103,24 @@ window.onload = start;
         <h1>Filtrado de datos</h1>
         <p class="lead">Utiliza esta aplicación para filtrar, recortar, eliminar errores y control de calidad de tu dataset.</p>
       </div>
+      <div id="Paso1">
 
-      <div id="file-uploader">
-        <noscript>
-            <p>Please enable JavaScript to use file uploader.</p>
-        </noscript>
+          <h2>1. Paso, elección del fichero.</h2>
+          <p class="lead" style="font-size: medium"> Cargue el fichero de datos a filtrar en el sistema haciendo click en el boton de subir fichero.</p>
+          <div id="file-uploader">
+            <noscript>
+                <p>Please enable JavaScript to use file uploader.</p>
+            </noscript>
+          </div>
+            <script>
+                var uploader = new qq.FileUploader({
+                // pass the dom node (ex. $(selector)[0] for jQuery users)
+                element: document.getElementById('file-uploader'),
+                // path to server-side upload script
+                action: '/upload'
+            });
+            </script>
       </div>
-        <script>
-            var uploader = new qq.FileUploader({
-            // pass the dom node (ex. $(selector)[0] for jQuery users)
-            element: document.getElementById('file-uploader'),
-            // path to server-side upload script
-            action: '/upload'
-        });
-        </script>
 
         <input type="submit" value="Go to my link location" onclick="window.location='/see';" />
     </div>

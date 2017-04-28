@@ -9,12 +9,12 @@
 	width: 105px;
 	padding: 7px 0;
 	text-align: center;
-	background: #880000;
-	border-bottom: 1px solid #DDD;
+	background: #0084ae;
+	border-bottom: 2px solid #000571;
 	color: #FFF;
 }
 .qq-upload-button-hover {
-	background: #CC0000;
+	background: #00ae66;
 }
 .qq-upload-button-focus {
 	outline: 1px dotted #000000;
