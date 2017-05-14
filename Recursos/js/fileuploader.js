@@ -13,7 +13,6 @@
 
 //
 // Helper functions
-//
 
 var qq = qq || {};
 
@@ -733,6 +732,7 @@ qq.extend(qq.FileUploader.prototype, {
 
         if (result.success){
             qq.addClass(item, this._classes.success);
+            show("Paso2");
         } else {
             qq.addClass(item, this._classes.fail);
         }
@@ -1440,4 +1440,49 @@ qq.DisposeSupport = {
     this.addDisposer(qq.attach.apply(this, arguments));
   }
 };
+function botonFiltrar(){
+    var list = document.getElementsByTagName("svg")[3];
+    list.style.visibility = "visible";
+
+    datos = {'qc_only':String($('#fcalidad')[0].childNodes[1].checked) }
+
+    if ($('#fcalidad')[0].childNodes[5].checked){
+            datos["qc_sample"] = []
+            datos["qc_sample"].push($('#fcalidad')[0].childNodes[8].value);
+    }
+    if ($('#fcalidad')[0].childNodes[11].checked){
+            datos["qc_kmer"] = []
+            datos["qc_kmer"].push($('#fcalidad')[0].childNodes[14].value);
+    }
+    
+    $.ajax({
+        url: "filter",
+        type: 'get',
+        data: datos
+        
+    }).done(function(object) {
+        setTimeout(function(){ 
+            var list = document.getElementsByTagName("svg")[3];
+            list.style.visibility = "hidden";
+            var buttonnode = document.createElement('input');
+            buttonnode.classList.className = 'btn btn-primary btn'
+            buttonnode.setAttribute('type','button');
+            buttonnode.setAttribute('name','sal');
+            buttonnode.setAttribute('value','Ver Resultados');
+            buttonnode.onclick = function(){redirectTo(object);}
+            document.getElementById("Paso2").appendChild(buttonnode);
+        }, 1000);
+    });
+}
+function show(nombre){
+    var name = '#'.concat(nombre);
+    $(name).css({"visibility": "visible"});
+}
+
+function redirectTo(object){
+    window.location.replace(object);
+}
+
+
+
 

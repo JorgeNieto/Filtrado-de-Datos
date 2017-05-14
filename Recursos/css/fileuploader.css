@@ -2,6 +2,8 @@
 .qq-uploader {
 	position: relative;
 	width: 100%;
+	border-style: double;
+	border-color:#4CAF50 ;
 }
 .qq-upload-button {
 	display: block;
@@ -14,7 +16,7 @@
 	color: #FFF;
 }
 .qq-upload-button-hover {
-	background: #00ae66;
+	background: #4CAF50;
 }
 .qq-upload-button-focus {
 	outline: 1px dotted #000000;
@@ -62,7 +64,7 @@
 	background-color: #FFF0BD;
 }
 .qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text {
-	margin-right: 12px;
+
 }
 .qq-upload-file {
 }
@@ -84,10 +86,32 @@
 	display: inline;
 }
 .qq-upload-list li.qq-upload-success {
-	background-color: #5DA30C;
+	background-color: #4CAF50;
 	color: #FFFFFF;
 }
 .qq-upload-list li.qq-upload-fail {
 	background-color: #D60000;
 	color: #FFFFFF;
 }
+#Paso2 {
+	visibility: hidden;
+}
+
+#opciones_de_filtrado{
+	margin: 30px auto;
+    border: 2px solid #4CAF50 ;
+    height: 200px;
+    width: 100%;
+}
+#tcalidad, #fcalidad {
+	margin-left: 1%;
+}
+
+input[type="radio"] {
+  margin-right: 0;
+}
+#botonFiltrar{
+	margin-left: 45%;
+	margin-top: 2%;
+}
+

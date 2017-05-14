@@ -26,6 +26,7 @@
 
 <script src="../js/fileuploader.js"></script>
 <link rel="stylesheet" href="../css/fileuploader.css">
+<link rel="stylesheet" href="../css/cargar.css">
 
 
 
@@ -103,10 +104,11 @@ window.onload = start;
         <h1>Filtrado de datos</h1>
         <p class="lead">Utiliza esta aplicación para filtrar, recortar, eliminar errores y control de calidad de tu dataset.</p>
       </div>
-      <div id="Paso1">
+
+        <div id="Paso1">
 
           <h2>1. Paso, elección del fichero.</h2>
-          <p class="lead" style="font-size: medium"> Cargue el fichero de datos a filtrar en el sistema haciendo click en el boton de subir fichero.</p>
+          <p class="lead" style="font-size: medium"> Cargue el fichero de datos a filtrar en el sistema haciendo click en el boton de subir fichero o arrastrando el fichero al recuadro de subida.</p>
           <div id="file-uploader">
             <noscript>
                 <p>Please enable JavaScript to use file uploader.</p>
@@ -120,9 +122,22 @@ window.onload = start;
                 action: '/upload'
             });
             </script>
-      </div>
-
-        <input type="submit" value="Go to my link location" onclick="window.location='/see';" />
+        </div>
+        <!--<input type="submit" value="Go to my link location" onclick="window.location='/see';" />-->
+        <div id="Paso2">
+            <h2>2. Paso, opciones de filtrado.</h2>
+            <p class="lead" style="font-size: medium"> Es el momento de seleccionar las opciones de filtrado.</p>
+            <div id="opciones_de_filtrado">
+                <p id="tcalidad"class="lead" style="font-size: medium">Opciones de control de calidad.</p>
+                <form id="fcalidad">
+                    <input type="checkbox" name="filter" value="qc_only" checked>-qc_only --> sólo se emitirán resultados de control de calidad. Puede ser mucho más rápido.<br>
+                    <input type="checkbox" name="filter" value="qc_sample">-qc_sample=QC_SAMPLE --> Muestra hasta qc_sample cuando hace QC, por defecto es 1000,000.<label for="fcalidad_value">Valor:</label><input id="valor" name="fcalidad_value" type="number" /><br>
+                    <input type="checkbox" name="filter" value="qc_kmer">-qc_kmer=QC_KMER --> Especifique la longitud de kmer para las estadísticas de KMER para QC, por defecto es 8.
+                    <label for="fcalidad_value">Valor:</label><input id="valor" name="fcalidad_value" type="number" />
+                </form>
+                <button id="botonFiltrar" type="button" class="btn btn-primary btn" onclick="botonFiltrar()">Filtrar</button>
+            </div>
+        </div>
     </div>
 
     <div id="Contacto" class="container">
@@ -162,5 +177,61 @@ window.onload = start;
 
   <div id="EmailWrong" class="alert alert-danger" role="alert">El e-mail no ha podido enviarse, en breve solucionaremos el error.</div>
   <div id="EmailOk" class="alert alert-success" role="alert">¡El e-mail se ha enviado correctamente!</div>
+
+
+ <div class="l-wrapper">
+    <svg viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <symbol id="s--circle">
+        <circle r="10" cx="20" cy="20"></circle>
+      </symbol>
+    </svg>
+
+  <svg viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  </svg>
+
+  <svg viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  </svg>
+
+  <svg viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g class="g-circles g-circles--v4">
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+        <g class="g--circle">
+          <use xlink:href="#s--circle" class="u--circle"/>
+        </g>
+      </g>
+  </svg>
+</div>
 </body>
 </html>
